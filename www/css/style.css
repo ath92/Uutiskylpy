@@ -1,0 +1,71 @@
+.container {
+	max-width: 900px;
+}
+
+.no-padding{
+	padding: 0!important;
+}
+
+mw-sentence{
+	display: block;
+	border: 1px solid black;
+	position: relative;
+}
+
+mw-finnish, mw-arabic{
+	display: block;
+	line-height: 4em;
+	margin-top: 2em;
+}
+
+mw-arabic{
+	position: relative;
+	top: -8.3em;
+}
+mw-finnish{
+	position: relative;
+	z-index: 10;
+}
+
+mw-word{
+	font-size: 20px;
+	padding: 5px;
+}
+
+mw-arabic mw-word{
+	opacity: 0;
+	transition: .3s;
+}
+
+mw-arabic mw-word.active, mw-arabic.active mw-word{
+	opacity: 1;
+	text-shadow: 1px 1px 1px #fff;
+}
+
+
+mw-finnish mw-word{
+	position: relative;
+}
+
+mw-tooltip{
+	position: absolute;
+	top: -2em;
+	left: 0;
+	display: block;
+	background: white;
+	border: 1px solid black;
+	display: none;
+	opacity: 0;
+	transition: .3s;
+	padding: 0 10px;
+}
+
+mw-tooltip mw-word{
+	line-height: 1em;
+	display: inline;
+}
+
+mw-word.active mw-tooltip{
+	display: block;
+	opacity: 1;
+}
