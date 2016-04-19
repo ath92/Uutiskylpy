@@ -14,13 +14,13 @@ mw-sentence{
 
 mw-finnish, mw-arabic{
 	display: block;
-	line-height: 4em;
+	line-height: 2em;
 	margin-top: 2em;
+	text-align: center;
 }
 
 mw-arabic{
 	position: relative;
-	top: -8.3em;
 }
 mw-finnish{
 	position: relative;
@@ -28,8 +28,10 @@ mw-finnish{
 }
 
 mw-word{
+	display: inline;
 	font-size: 20px;
 	padding: 5px;
+	vertical-align: middle;
 }
 
 mw-arabic mw-word{
