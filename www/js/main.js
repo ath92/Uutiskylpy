@@ -1,14 +1,21 @@
 $(document).ready(function(){
 
-	var sentences;//global container for the sentences that will be loaded later.
+	var sentences, sentenceStart, sentenceEnd, currentSentence;//global variables that contains the HTML for each sentence and two vars for end and beginning of current sentence (in seconds)
 
 	console.log('hello world!');
 
-	var colors=["#f00","#0f0", "#00f", "#990", "#909", "#099"];
+	var colors=["#f99","#9f9", "#99f", "#ff9", "#f9f", "#9ff", "#caf", "#fca"];
 
-	$('#video').get(0).play();
+	var video = document.getElementById('video');
+	video.play();
 	$('#video').resize(function(){
 		//$('#content').css({'height': ($(window).height() - $('#video').height()) + 'px'});//-20 is a dirty thing but I don't feel like changing it right now
+	});
+
+	video.addEventListener("timeupdate", function(){
+	    if(this.currentTime >= sentenceEnd) {
+	        this.pause();
+	    }
 	});
 
 	var timeout;//global timeoutvariable
@@ -32,24 +39,38 @@ $(document).ready(function(){
 
 	    	for(var i = 0; i < sentences.length; i++){
 	    		var element = $('<a href="#">'+i+'</a>');
+	    		if(i==0) element.addClass('active');
 	    		element.on('click', function(){
-	    			$('#timeline a').removeClass('active');
-	    			$(this).addClass('active');
 	    			setSentence($(this).html());
 	    		});
 	    		$('#timeline').append(element);
 	    	}
 
 	    	$('#video').click(function(){
-				$('#video').get(0).play();
+				if(video.paused || video.ended){
+					setSentence((currentSentence+1)%sentences.length);
+				}
 	    	});
 
 
 
 	    	function setSentence(sentenceId){
+	    		currentSentence = sentenceId;
 
     			$('mw-sentence').remove();
     			$('.container').append(sentences[sentenceId]);
+
+    			sentenceStart = parseInt($('mw-sentence').attr('start'));
+    			sentenceEnd = parseInt($('mw-sentence').attr('end'));
+
+    			video.currentTime = sentenceStart;
+    			video.play();
+
+    			$('#timeline a').removeClass('active');
+    			$('#timeline a:nth-child('+(parseInt(sentenceId)+1)+')').addClass('active');
+
+    			console.log(sentenceId, $('#timeline a:nth-child('+(parseInt(sentenceId)+1)+')'));
+
 
 
 		    	$('mw-finnish mw-word').on('click', function(e){
@@ -62,8 +83,14 @@ $(document).ready(function(){
 		    	});
 
 
-		    	$('mw-finnish').on('swipeone swiperight', function(e){
+		    	$('mw-finnish').on('dblclick', function(e){
+		    		$('mw-word').removeClass('active');
 		    		$('mw-sentence').toggleClass('active');
+		    	});
+
+
+		    	$('mw-sentence').on('swipeone swiperight', function(e){
+		    		setSentence((sentenceId + 1) % sentences.length);
 		    	});
 
 		    	//this code adds a tooltip for each Finnish word containing the arabic translations of those words as specified in the pseudo-xml file.
@@ -71,7 +98,7 @@ $(document).ready(function(){
 		    	$('mw-finnish mw-word').each(function(){
 		    		var finnishId = $(this).attr('id');
 
-		    		$(this).css({'color':colors[iterator]});
+		    		$(this).css({'border': '2px solid ' + colors[iterator%colors.length]});
 					$('mw-arabic mw-word[finnish-id="'+finnishId+'"]').css({'background-color':colors[iterator%colors.length]});
 		    		var arabicWords = $('mw-arabic mw-word[finnish-id="'+finnishId+'"]');
 		    		console.log(arabicWords);

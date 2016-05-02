@@ -41,7 +41,7 @@ video{
 	border: none;
 }
 
-#timelina a.active{
+#timeline a.active{
 	border-bottom: 3px solid #09f;
 }
 
@@ -56,21 +56,31 @@ mw-finnish, mw-arabic{
 	flex: 1;
 	box-shadow: 0 -1px 0 #bbb;
 	text-align: center;
-	padding: 20px 0;
+	padding: 40px 20px 0 20px;
 	box-sizing: border-box;
 }
 
 mw-arabic{
+	direction: rtl;
 }
 
 mw-finnish{
 	z-index: 10;
+	font-size: 0;
+	line-height: 2;
 }
 
 mw-word{
 	display: inline;
-	margin: auto 0;
+	margin: 5px -2px;
 	font-size: 20px;
+}
+
+mw-finnish mw-word{	
+	border: 2px solid rgba(0,0,0,0);
+	border-left: none!important;
+	border-right: none!important;
+	margin: 0 0.35px;
 }
 
 
@@ -82,6 +92,10 @@ mw-arabic mw-word{
 mw-sentence.active mw-arabic mw-word{
 	opacity: 1;
 	text-shadow: 1px 1px 1px #fff;
+}
+
+mw-sentence:not(.active) mw-word{
+	border-color: rgba(0,0,0,0)!important;
 }
 
 mw-tooltip{
@@ -100,4 +114,8 @@ mw-tooltip{
 mw-word.active mw-tooltip{
 	display: block;
 	opacity: 1;
+}
+
+mw-sentence mw-finnish mw-word.active{
+	border-bottom: 2px solid #09f!important;
 }
