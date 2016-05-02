@@ -19,11 +19,37 @@ video{
 	display: block;
 	flex-grow: 0;
 	min-width: 100%;
+	max-height: 300px;
+}
+
+#header{
+	flex-grow: 0;
+	height: 50px;
+	background-color: #000;
+	width: 100%;
+}
+
+#header img{
+	max-height: 50px;
+	padding: 10px;
+	box-sizing: border-box;
+	display: block;
+	float: left;
+}
+
+#header h1{
+	float: left;
+	display: block;
+	font-size: 22px;
+	text-transform: uppercase;
+	color: white;
+	margin: 0;
+	padding: 15px 0;
 }
 
 #timeline{
 	flex-grow: 0;
-	min-height: 50px;
+	min-height: 20px;
 	background: #eee;
 	display: flex;
 }
@@ -32,17 +58,21 @@ video{
 	text-align: center;
 	display: box;
 	box-sizing: border-box;
-	padding: 20px 0;
+	padding: 10px 0;
 	flex: 1 1;
-	border-right: 1px solid #ccc;
+	border-right: 3px solid #fff;
 }
 
 #timeline a:last-child{
 	border: none;
 }
 
+#timeline a.complete{
+	background-color: #999;
+}
+
 #timeline a.active{
-	border-bottom: 3px solid #09f;
+	background-color: #333;
 }
 
 mw-sentence{
@@ -54,7 +84,7 @@ mw-sentence{
 
 mw-finnish, mw-arabic{
 	flex: 1;
-	box-shadow: 0 -1px 0 #bbb;
+	box-shadow: 0 1px 0 #bbb;
 	text-align: center;
 	padding: 40px 20px 0 20px;
 	box-sizing: border-box;
@@ -71,8 +101,8 @@ mw-finnish{
 }
 
 mw-word{
-	display: inline;
-	margin: 5px -2px;
+	display: inline-block;
+	margin: 5px 3px;
 	font-size: 20px;
 }
 
@@ -80,7 +110,7 @@ mw-finnish mw-word{
 	border: 2px solid rgba(0,0,0,0);
 	border-left: none!important;
 	border-right: none!important;
-	margin: 0 0.35px;
+	margin: 0 3px;
 }
 
 
@@ -98,7 +128,7 @@ mw-sentence:not(.active) mw-word{
 	border-color: rgba(0,0,0,0)!important;
 }
 
-mw-tooltip{
+#tooltip{
 	position: absolute;
 	width: 100%;
 	bottom: 0;
@@ -109,9 +139,10 @@ mw-tooltip{
 	opacity: 0;
 	padding: 20px 0;
 	transition: .3s;
+	font-size: 20px;
 }
 
-mw-word.active mw-tooltip{
+#tooltip.active{
 	display: block;
 	opacity: 1;
 }
@@ -119,3 +150,11 @@ mw-word.active mw-tooltip{
 mw-sentence mw-finnish mw-word.active{
 	border-bottom: 2px solid #09f!important;
 }
+
+mw-tooltips{
+	display: none;
+}
+mw-tooltip finnish-part:last-of-type:after{
+	white-space: pre;content:'\A';;
+}
+
