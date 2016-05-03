@@ -74,7 +74,7 @@ $(document).ready(function(){
 		    		clearTimeout(timeout);
 		    		timeout = setTimeout(function(){
 		    			$('#tooltip, mw-word').removeClass('active');
-		    		}, 2000);
+		    		}, 4000);
 		    	});
 
 
@@ -93,7 +93,7 @@ $(document).ready(function(){
 		    	$('mw-finnish mw-word').each(function(){
 		    		var finnishId = $(this).attr('id');
 
-		    		$(this).css({'border': '2px solid ' + colors[iterator%colors.length]});
+		    		$(this).css({'background-color': '' + colors[iterator%colors.length]});
 					$('mw-arabic mw-word[finnish-id="'+finnishId+'"]').css({'background-color':colors[iterator%colors.length]});
 
 					var sentence = $(this).parent().parent();// mw-word --> mw-finnish -> mw-sentece

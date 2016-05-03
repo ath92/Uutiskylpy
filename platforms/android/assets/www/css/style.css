@@ -3,6 +3,10 @@ html,body{
 	background: #fcfcfc;
 }
 
+mw-finnish mw-word, finnish-part, h1{
+	font-family: "Open Sans", sans-serif;
+}
+
 .container {
 	max-width: 900px;
 	height: 100%;
@@ -25,26 +29,43 @@ video{
 #header{
 	flex-grow: 0;
 	height: 50px;
-	background-color: #000;
+	background-color: #111;
 	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+#header .branding{
+	flex-grow: 1;
+	text-align: center;
+	line-height: 0;
 }
 
 #header img{
 	max-height: 50px;
 	padding: 10px;
 	box-sizing: border-box;
-	display: block;
-	float: left;
+	display: inline-block;
+	width: 50px;
+	margin: 0;
+    vertical-align:top;
 }
 
 #header h1{
-	float: left;
-	display: block;
-	font-size: 22px;
-	text-transform: uppercase;
+	display: inline-block;
+	font-size: 18px;
 	color: white;
 	margin: 0;
-	padding: 15px 0;
+	padding: 16px 0;
+}
+
+.header-button{
+	width: 50px;
+	height: 50px;
+	box-sizing: border-box;
+	padding: 15px;
+	font-size: 18px;
+	flex-grow: 0;
 }
 
 #timeline{
@@ -60,7 +81,8 @@ video{
 	box-sizing: border-box;
 	padding: 10px 0;
 	flex: 1 1;
-	border-right: 3px solid #fff;
+	border-right: 1px solid #fff;
+	position: relative;
 }
 
 #timeline a:last-child{
@@ -68,11 +90,35 @@ video{
 }
 
 #timeline a.complete{
-	background-color: #999;
+	background-color: #337ab7;
 }
 
 #timeline a.active{
-	background-color: #333;
+	background-color: #111;
+}
+
+
+#timeline a.complete:after{
+	border-color: transparent transparent transparent #337ab7!important;
+}
+#timeline a.active:after{
+	border-color: transparent transparent transparent #111!important;
+}
+
+
+
+#timeline a:not(:last-child):after{
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 0 10px 10px;
+	border-color: transparent transparent transparent #eee;
+	position: absolute;
+	z-index: 2;
+	right: -10px;
+	top: 0;
 }
 
 mw-sentence{
@@ -86,7 +132,7 @@ mw-finnish, mw-arabic{
 	flex: 1;
 	box-shadow: 0 1px 0 #bbb;
 	text-align: center;
-	padding: 40px 20px 0 20px;
+	padding: 0px 20px 0 20px;
 	box-sizing: border-box;
 }
 
@@ -102,15 +148,9 @@ mw-finnish{
 
 mw-word{
 	display: inline-block;
-	margin: 5px 3px;
+	margin: 5px 2px;
 	font-size: 20px;
-}
-
-mw-finnish mw-word{	
-	border: 2px solid rgba(0,0,0,0);
-	border-left: none!important;
-	border-right: none!important;
-	margin: 0 3px;
+	padding: 3px 5px;
 }
 
 
@@ -122,6 +162,14 @@ mw-arabic mw-word{
 mw-sentence.active mw-arabic mw-word{
 	opacity: 1;
 	text-shadow: 1px 1px 1px #fff;
+}
+
+mw-sentece.active mw-finnish mw-word{
+	text-shadow: 1px 1px 1px #fff;
+}
+
+mw-sentence:not(.active) mw-finnish mw-word{
+	background: transparent!important;
 }
 
 mw-sentence:not(.active) mw-word{
