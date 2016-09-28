@@ -1,6 +1,6 @@
-# medium-waffle
+# Uutiskylpy
 
-Medium-waffle was the working title for what was later called Uutiskylpy (news bath in Finnish), a language learning app for recent immigrants
+Uutiskylpy (news bath in Finnish) is a language learning app for recent immigrants
 That uses the simplified news broadcast by YLE (Finland's public broadcaster). Users can watch small news fragments, each of which is
 transcribed with Finnish text. By tapping words of the transcription that are visible while the user is watching, they are able to see a
 translation of that word, including information on grammar (conjugations, pre- and suffixes, etc.). When the user is really struggling,
